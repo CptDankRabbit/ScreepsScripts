@@ -22,13 +22,13 @@ var Type =
 	{
 		name: "Upgrader",
 		role: "upgrader",
-		modules: [WORK,CARRY,MOVE,MOVE,MOVE]
+		modules: [WORK,CARRY,CARRY,MOVE,MOVE]
 	},
 	REPAIRER:
 	{
 		name: "Repairer",
 		role: "repairer",
-		modules: [WORK,CARRY,MOVE,MOVE,MOVE]
+		modules: [WORK,CARRY,CARRY,MOVE,MOVE]
 	}
 }
 
@@ -107,12 +107,12 @@ module.exports.loop = function ()
 		Create (Type.WORKER);
 	}
 	else
-	if(upgraders.length < 3)
+	if(upgraders.length < 5)
 	{
 		Create (Type.UPGRADER);
 	}
 	else
-	if(builders.length < 6)
+	if(builders.length < 5)
 	{
 		Create (Type.BUILDER);
 	}

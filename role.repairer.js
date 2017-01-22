@@ -5,9 +5,6 @@ var roleRepairer = {
 
         if(creep.memory.repairing && creep.carry.energy == 0) 
         {
-            var NodeNumber = Math.floor(Math.random() * 2);
-            
-            creep.memory.nodenumber = NodeNumber;
             creep.memory.repairing = false;
             creep.say('Collecting');
         }
@@ -59,9 +56,9 @@ var roleRepairer = {
         else 
         {
             var sources = creep.room.find(FIND_SOURCES);
-            if(creep.harvest(sources[creep.memory.nodenumber]) == ERR_NOT_IN_RANGE) 
+            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) 
             {
-                creep.moveTo(sources[creep.memory.nodenumber]);
+                creep.moveTo(sources[0]);
                 
             }
         }

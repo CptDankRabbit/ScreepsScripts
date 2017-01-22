@@ -3,11 +3,8 @@ var roleBuilder = {
 	/** @param {Creep} creep **/
 	run: function(creep) {
 
-		if(creep.memory.building && creep.carry.energy == 0) {
-		    
-		    var NodeNumber = Math.floor(Math.random() * 2);
-            
-            creep.memory.nodenumber = NodeNumber;
+		if(creep.memory.building && creep.carry.energy == 0) 
+		{
 			creep.memory.building = false;
 			creep.say('Harvesting');
 		}
@@ -18,7 +15,8 @@ var roleBuilder = {
 
 		if(creep.memory.building) 
 		{
-			var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
+		var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
+        
 			if(targets.length) {
 				if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
 					creep.moveTo(targets[0]);
@@ -27,8 +25,8 @@ var roleBuilder = {
 		}
 		else {
 			var sources = creep.room.find(FIND_SOURCES);
-			if(creep.harvest(sources[creep.memory.nodenumber]) == ERR_NOT_IN_RANGE) {
-				creep.moveTo(sources[creep.memory.nodenumber]);
+			if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+				creep.moveTo(sources[0]);
 			}
 		}
 	}
