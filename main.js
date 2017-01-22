@@ -117,7 +117,7 @@ module.exports.loop = function ()
 		Create (Type.BUILDER);
 	}
 	else
-	if(repairers.length < 4)
+	if(repairers.length < 2)
 	{
 		Create (Type.REPAIRER);
 	}
