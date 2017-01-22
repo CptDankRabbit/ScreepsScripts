@@ -107,12 +107,12 @@ module.exports.loop = function ()
 		Create (Type.WORKER);
 	}
 	else
-	if(upgraders.length < 2)
+	if(upgraders.length < 3)
 	{
 		Create (Type.UPGRADER);
 	}
 	else
-	if(builders.length < 4)
+	if(builders.length < 3)
 	{
 		Create (Type.BUILDER);
 	}
