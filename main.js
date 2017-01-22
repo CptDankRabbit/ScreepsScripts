@@ -21,7 +21,7 @@ var Type =
 	UPGRADER:
 	{
 		name: "Upgrader",
-		role: "builder",
+		role: "upgrader",
 		modules: [WORK,CARRY,MOVE,MOVE,MOVE]
 	}
 }
@@ -109,7 +109,11 @@ module.exports.loop = function ()
 	{
 		Create (Type.BUILDER);
 	}
-
+	else
+	if(builders.length < 4)
+	{
+		Create (Type.BUILDER);
+	}
 	
 	for(var name in Game.creeps) 
 	{
