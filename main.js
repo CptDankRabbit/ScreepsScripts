@@ -29,16 +29,23 @@ module.exports.loop = function ()
 	var upgraders  = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
 	var repairers  = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
     
-	if(harvesters.length <= 4) 
+	if(harvesters.length <= 3) 
 	{
-		var newName = Game.spawns['InitialSpawn'].createCreep([WORK,CARRY,CARRY,MOVE,MOVE,MOVE], undefined, {role: 'harvester'}); //[WORK,WORK,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE] == 500 Energy
+		var newName = Game.spawns['InitialSpawn'].createCreep([WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], undefined, {role: 'harvester'}); //[WORK,WORK,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE] == 500 Energy
 		
 		if (newName != ERR_NOT_ENOUGH_ENERGY)
 			console.log('Spawning new harvester: ' + newName);
 	}
 	
-
-	if(builders.length <= 3) 
+	if((upgraders.length <= 4) && (harvesters.length > 2))
+	{
+		var newName = Game.spawns['InitialSpawn'].createCreep([WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], undefined, {role: 'upgrader'}); //Add 1 work
+		
+		if (newName != ERR_NOT_ENOUGH_ENERGY)
+			console.log('Spawning new upgrader: ' + newName);
+	}
+	
+	if((builders.length <= 2) && (harvesters.length > 1) && (upgraders.length > 1))
 	{
 		var newName = Game.spawns['InitialSpawn'].createCreep([WORK,WORK,CARRY,CARRY,MOVE], undefined, {role: 'builder'});
 		
@@ -46,16 +53,7 @@ module.exports.loop = function ()
 			console.log('Spawning new builder: ' + newName);
 	}
 	
-
-	if(upgraders.length <= 3) 
-	{
-		var newName = Game.spawns['InitialSpawn'].createCreep([WORK,CARRY,CARRY,MOVE,MOVE,MOVE], undefined, {role: 'upgrader'}); //Add 1 work
-		
-		if (newName != ERR_NOT_ENOUGH_ENERGY)
-			console.log('Spawning new upgrader: ' + newName);
-	}
-	
-	if(repairers.length <= 1)
+	if((repairers.length <= 1) && (harvesters.length > 1) && (upgraders.length > 1) && (builders.length > 1))
 	{
 	    var newName = Game.spawns['InitialSpawn'].createCreep([WORK,CARRY,CARRY,MOVE,MOVE], undefined, {role: 'repairer'});
 		
