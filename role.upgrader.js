@@ -5,9 +5,6 @@ var roleUpgrader = {
 
         if(creep.memory.upgrading && creep.carry.energy == 0) 
         {
-            var NodeNumber = Math.floor(Math.random() * 2);
-            
-            creep.memory.nodenumber = NodeNumber;
             creep.memory.upgrading = false;
             creep.say('Harvesting');
         }
@@ -23,8 +20,8 @@ var roleUpgrader = {
         }
         else {
             var sources = creep.room.find(FIND_SOURCES);
-            if(creep.harvest(sources[creep.memory.nodenumber]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[creep.memory.nodenumber]);
+            if(creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(sources[1]);
             }
         }
     }

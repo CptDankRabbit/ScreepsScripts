@@ -5,9 +5,6 @@ var roleHarvester = {
         
         if(!creep.memory.harvesting && creep.carry.energy == 0)
         {
-            var NodeNumber = Math.floor(Math.random() * 2);
-            
-            creep.memory.nodenumber = NodeNumber; //Attempting to choose random node
             creep.memory.harvesting = true;
 			creep.say('Harvesting');
         }
@@ -22,8 +19,8 @@ var roleHarvester = {
             var sources = creep.room.find(FIND_SOURCES);
 			var closest = creep.pos.findClosestByRange(sources);
 			creep.pos
-            if(creep.harvest(sources[creep.memory.nodenumber]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[creep.memory.nodenumber]);
+            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(sources[0]);
             }
         }
         else 
