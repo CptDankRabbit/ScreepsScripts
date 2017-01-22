@@ -2,7 +2,18 @@ var roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-        if(creep.carry.energy !== creep.carryCapacity) 
+        
+        if(creep.memory.harvesting && creep.carry.energy == 0){
+            creep.memory.harvesting = false;
+			creep.say('Harvesting');
+        }
+        
+        if(!creep.memory.harvesting && creep.carry.energy == creep.carryCapacity) {
+			creep.memory.harvesting = true;
+			creep.say('Storing');
+		}
+		
+        if(creep.memory.harvesting) 
         {   
             var sources = creep.room.find(FIND_SOURCES);
 			var closest = creep.pos.findClosestByRange(sources);
@@ -28,7 +39,6 @@ var roleHarvester = {
                 if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) 
                 {
                     creep.moveTo(targets[0]);
-                    creep.say('Storing')
                 }
                 
             }
