@@ -13,8 +13,8 @@ var roleHarvester = {
 			creep.say('Storing');
 		}
 		
-        if(creep.memory.harvesting) 
-        {
+        if(creep.carry.energy !== creep.carryCapacity) 
+        {   
             var sources = creep.room.find(FIND_SOURCES);
 			var closest = creep.pos.findClosestByRange(sources);
 			creep.pos
@@ -40,6 +40,7 @@ var roleHarvester = {
                 if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) 
                 {
                     creep.moveTo(targets[0]);
+                    creep.say('Storing')
                 }
                 
             }
