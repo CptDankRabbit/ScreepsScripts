@@ -58,12 +58,13 @@ var error_code_strings =
 
 function Create (type)
 {
-	console.log ("Creating " + type.name + ", cost: " + misc.GetCost(type.modules));
+	var result = Game.spawns['Spawn1'].createCreep(type.modules, undefined, {role: type.role});
 	// TODO: Check if we have the required energy to build the bot
 	
-	var result = Game.spawns['Spawn1'].createCreep(type.modules, undefined, {role: type.role});
+	if (result != ERR_BUSY && result != -6)
+		console.log ("Creating " + type.name + ", cost: " + misc.GetCost(type.modules));
 	
-	if (result < 0)
+	if (result < 0 && result != -6)
 	{
 		console.log ("Unable to create bot: " + GetErrorCodeString(result));
 		return false;
