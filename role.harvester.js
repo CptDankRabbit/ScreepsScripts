@@ -4,25 +4,32 @@ var roleHarvester = {
     run: function(creep) {
         
         if(creep.memory.harvesting && creep.carry.energy == 0){
-            creep.memory.harvesting = false;
+            creep.memory.harvesting = true;
 			creep.say('Harvesting');
         }
         
         if(!creep.memory.harvesting && creep.carry.energy == creep.carryCapacity) {
-			creep.memory.harvesting = true;
+			creep.memory.harvesting = false;
 			creep.say('Storing');
 		}
 		
         if(creep.memory.harvesting) 
         {   
+            var sources = creep.room.find(FIND_SOURCES);
+			var closest = creep.pos.findClosestByRange(sources);
+            if(creep.harvest(closest) == ERR_NOT_IN_RANGE) {
+               creep.moveTo(closest);
+        }
+        else 
+        {
             var targets = creep.room.find(FIND_STRUCTURES, {
-                    filter: (structure) => 
-                    {
-                        return (structure.structureType == STRUCTURE_EXTENSION ||
-                                structure.structureType == STRUCTURE_SPAWN ||
-                                structure.structureType == STRUCTURE_TOWER) 
-                                && structure.energy < structure.energyCapacity;
-                    }
+                filter: (structure) => 
+                {
+                    return (structure.structureType == STRUCTURE_EXTENSION ||
+                            structure.structureType == STRUCTURE_SPAWN ||
+                            structure.structureType == STRUCTURE_TOWER) 
+                            && structure.energy < structure.energyCapacity;
+                }
             });
             
             if(targets.length > 0) 
@@ -34,14 +41,6 @@ var roleHarvester = {
                 
             }
         }
-        else 
-        {
-            var sources = creep.room.find(FIND_SOURCES);
-			var closest = creep.pos.findClosestByRange(sources);
-            if(creep.harvest(closest) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(closest);
-                creep.say('Collecting')
-            }
             
         }
     }
