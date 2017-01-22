@@ -3,12 +3,12 @@ var roleHarvester = {
     /** @param {Creep} creep **/
     run: function(creep) {
         
-        var NodeNumber = Math.floor(Math.random() * 2);
-        //console.log(NodeNumber);
-        
         if(!creep.memory.harvesting && creep.carry.energy == 0){
-            creep.memory.harvesting = true;
+            
+            var NodeNumber = Math.floor(Math.random() * 2);
+            
             creep.memory.nodenumber = NodeNumber; //Attempting to choose random node
+            creep.memory.harvesting = true;
 			creep.say('Harvesting');
         }
         

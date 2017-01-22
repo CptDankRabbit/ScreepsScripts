@@ -102,7 +102,7 @@ module.exports.loop = function ()
 	var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
 	var repairers  = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
 	
-	if(harvesters.length < 3)
+	if(harvesters.length < 4)
 	{
 		Create (Type.WORKER);
 	}
@@ -112,7 +112,7 @@ module.exports.loop = function ()
 		Create (Type.UPGRADER);
 	}
 	else
-	if(builders.length < 4)
+	if(builders.length < 6)
 	{
 		Create (Type.BUILDER);
 	}
