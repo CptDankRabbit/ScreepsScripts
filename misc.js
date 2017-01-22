@@ -28,7 +28,6 @@ function GetCost (parts)
 	console.log("Name of all Builders = " + NameAllBuilders)
 	console.log("Name of all Repairers = " + NameAllRepairers)
 	console.log("Total Creeps = " + TotalCreeps)
-	//console.log("")
 }
 
 module.exports.RoleCall = RoleCall();
