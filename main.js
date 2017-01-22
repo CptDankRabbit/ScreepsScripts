@@ -10,7 +10,7 @@ var Type =
 	{
 		name: "Worker",
 		role: "harvester",
-		modules: [WORK,WORK,CARRY,MOVE]
+		modules: [WORK,CARRY,CARRY,MOVE,MOVE]
 	},
 	BUILDER:
 	{
@@ -112,7 +112,7 @@ module.exports.loop = function ()
 		Create (Type.UPGRADER);
 	}
 	else
-	if(builders.length < 3)
+	if(builders.length < 4)
 	{
 		Create (Type.BUILDER);
 	}
