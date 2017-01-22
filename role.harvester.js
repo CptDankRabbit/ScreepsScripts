@@ -15,15 +15,6 @@ var roleHarvester = {
 		
         if(creep.memory.harvesting) 
         {   
-            var sources = creep.room.find(FIND_SOURCES);
-			var closest = creep.pos.findClosestByRange(sources);
-            if(creep.harvest(closest) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(closest);
-                creep.say('Collecting')
-            }
-        }
-        else 
-        {
             var targets = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => 
                     {
@@ -42,6 +33,16 @@ var roleHarvester = {
                 }
                 
             }
+        }
+        else 
+        {
+            var sources = creep.room.find(FIND_SOURCES);
+			var closest = creep.pos.findClosestByRange(sources);
+            if(creep.harvest(closest) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(closest);
+                creep.say('Collecting')
+            }
+            
         }
     }
 };
