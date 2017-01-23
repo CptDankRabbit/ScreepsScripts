@@ -18,13 +18,30 @@ var roleUpgrader = {
                 creep.moveTo(creep.room.controller);
             }
         }
-        else {
-            var sources = creep.room.find(FIND_SOURCES);
-            var closest = creep.pos.findClosestByRange(sources);
-			creep.pos
-            if(creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[1]);
+        else 
+        {
+            var miner = _.filter(Game.creeps, (creep) => creep.memory.role == "miner");
+            
+            var containers = creep.room.find(FIND_STRUCTURES, 
+            { 
+                filter: 
+                    (structure) => { return (structure.structureType == STRUCTURE_CONTAINER) 
+                                    && (structure.store[RESOURCE_ENERGY] > 0); }
+            });
+            
+	        var source = creep.pos.findClosestByPath(containers);
+	        
+            if(creep.withdraw(source, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) 
+            { 
+                creep.moveTo(source);
             }
+            
+	        //Old Method -- Was to mine node, new method collects from container!
+	        /*var source = creep.pos.findClosestByPath(containers);
+            if(creep.withdraw(source, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) 
+            { 
+                creep.moveTo(source);
+            }*/
         }
     }
 };

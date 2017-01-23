@@ -23,7 +23,7 @@ var Type =
 	{
 		name: "Upgrader",
 		role: "upgrader",
-		modules: [WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE]
+		modules: [WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE]
 	},
 	REPAIRER:
 	{
@@ -114,12 +114,13 @@ module.exports.loop = function ()
 	{
 	    Create (Type.MINER);
 	}
-	if(harvesters.length < 3)
+	else
+	if(harvesters.length < 4)
 	{
 		Create (Type.WORKER);
 	}
 	else
-	if(upgraders.length < 3)
+	if(upgraders.length < 4)
 	{
 		Create (Type.UPGRADER);
 	}
@@ -148,6 +149,9 @@ module.exports.loop = function ()
 		}
 		if(creep.memory.role == 'repairer') {
             roleRepairer.run(creep);
+        }
+        if(creep.memory.role == 'miner') {
+            roleMiner.run(creep);
         }
 	}
 	
