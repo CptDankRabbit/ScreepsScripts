@@ -10,7 +10,7 @@ var source = creep.pos.findClosestByPath(containers);
     if(creep.withdraw(source, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) 
     { 
         creep.moveTo(source);
-    }
+    }*/
 
 var roleMiner = { 
     /** @param {Creep} creep **/ 

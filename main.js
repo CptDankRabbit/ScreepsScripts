@@ -10,25 +10,25 @@ var Type =
 	{
 		name: "Worker",
 		role: "harvester",
-		modules: [WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE]
+		modules: [WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE]
 	},
 	BUILDER:
 	{
 		name: "Builder",
 		role: "builder",
-		modules: [WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE]
+		modules: [WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE]
 	},
 	UPGRADER:
 	{
 		name: "Upgrader",
 		role: "upgrader",
-		modules: [WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE]
+		modules: [WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE]
 	},
 	REPAIRER:
 	{
 		name: "Repairer",
 		role: "repairer",
-		modules: [WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE]
+		modules: [WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE]
 	}
 }
 
