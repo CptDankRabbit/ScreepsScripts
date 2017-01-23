@@ -20,6 +20,8 @@ var roleUpgrader = {
         }
         else {
             var sources = creep.room.find(FIND_SOURCES);
+            var closest = creep.pos.findClosestByRange(sources);
+			creep.pos
             if(creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources[1]);
             }

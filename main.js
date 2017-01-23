@@ -10,25 +10,25 @@ var Type =
 	{
 		name: "Worker",
 		role: "harvester",
-		modules: [WORK,CARRY,CARRY,MOVE,MOVE]
+		modules: [WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE]
 	},
 	BUILDER:
 	{
 		name: "Builder",
 		role: "builder",
-		modules: [WORK,WORK,CARRY,MOVE]
+		modules: [WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE]
 	},
 	UPGRADER:
 	{
 		name: "Upgrader",
 		role: "upgrader",
-		modules: [WORK,CARRY,CARRY,MOVE,MOVE]
+		modules: [WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE]
 	},
 	REPAIRER:
 	{
 		name: "Repairer",
 		role: "repairer",
-		modules: [WORK,CARRY,CARRY,MOVE,MOVE]
+		modules: [WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE]
 	}
 }
 
@@ -102,7 +102,7 @@ module.exports.loop = function ()
 	var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
 	var repairers  = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
 	
-	if(harvesters.length < 4)
+	if(harvesters.length < 3)
 	{
 		Create (Type.WORKER);
 	}
@@ -112,12 +112,12 @@ module.exports.loop = function ()
 		Create (Type.UPGRADER);
 	}
 	else
-	if(builders.length < 5)
+	if(builders.length < 4)
 	{
 		Create (Type.BUILDER);
 	}
 	else
-	if(repairers.length < 2)
+	if(repairers.length < 1)
 	{
 		Create (Type.REPAIRER);
 	}

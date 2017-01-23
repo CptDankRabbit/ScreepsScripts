@@ -18,7 +18,7 @@ var roleRepairer = {
         if(creep.memory.repairing) 
         {
             var targets = creep.room.find(FIND_STRUCTURES, {
-             filter: object => object.hits < (object.hitsMax/2)
+             filter: object => object.hits < (object.hitsMax/2) //(object.hitsMax/2)
             });
 
             targets.sort((a,b) => a.hits - b.hits);
@@ -55,10 +55,13 @@ var roleRepairer = {
         } 
         else 
         {
-            var sources = creep.room.find(FIND_SOURCES);
-            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) 
+            var sources = creep.room.find(FIND_SOURCES); //usage = sources[0]
+            var closest = creep.pos.findClosestByRange(sources);
+			creep.pos
+            
+            if(creep.harvest(closest) == ERR_NOT_IN_RANGE) 
             {
-                creep.moveTo(sources[0]);
+                creep.moveTo(closest);
                 
             }
         }
