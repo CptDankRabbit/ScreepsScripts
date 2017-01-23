@@ -20,13 +20,15 @@ function GetCost (parts)
     var NameAllUpgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     var NameAllBuilders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
 	var NameAllRepairers = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
+	var NameAllMiners = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner');
 	
-	var TotalCreeps = NameAllHarvesters.length + NameAllBuilders.length + NameAllUpgraders.length + NameAllRepairers.length;
+	var TotalCreeps = NameAllHarvesters.length + NameAllBuilders.length + NameAllUpgraders.length + NameAllRepairers.length + NameAllMiners.length;
 	
    	console.log("Name of all Harvesters = " + NameAllHarvesters)
    	console.log("Name of all Upgraders = " + NameAllUpgraders)
 	console.log("Name of all Builders = " + NameAllBuilders)
 	console.log("Name of all Repairers = " + NameAllRepairers)
+	console.log("Name of all Miners = " + NameAllMiners)
 	console.log("Total Creeps = " + TotalCreeps)
 }
 

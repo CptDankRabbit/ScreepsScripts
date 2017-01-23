@@ -2,6 +2,7 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer');
+var roleMiner = require('role.miner');
 var misc = require('misc');
 
 var Type =
@@ -29,6 +30,12 @@ var Type =
 		name: "Repairer",
 		role: "repairer",
 		modules: [WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE]
+	},
+	MINER:
+	{
+	    name: "Miner",
+	    role: "miner",
+	    modules: [WORK,WORK,WORK,WORK,WORK,MOVE]
 	}
 }
 
@@ -101,7 +108,12 @@ module.exports.loop = function ()
 	var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
 	var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
 	var repairers  = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
+	var miner = _.filter(Game.creeps, (creep) => creep.memory.role == "miner");
 	
+	if(miner.length < 1)
+	{
+	    Create (Type.MINER);
+	}
 	if(harvesters.length < 3)
 	{
 		Create (Type.WORKER);
