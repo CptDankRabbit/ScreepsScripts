@@ -30,9 +30,8 @@ var roleHarvester = {
                     {
                         return (structure.structureType == STRUCTURE_EXTENSION ||
                                 structure.structureType == STRUCTURE_SPAWN ||
-                                structure.structureType == STRUCTURE_TOWER ||
-                                structure.structureType == STRUCTURE_CONTAINER)
-                                && structure.energy < structure.energyCapacity;
+                                structure.structureType == STRUCTURE_TOWER)
+                                &&  structure.energy < structure.energyCapacity;
                     }
             });
             
@@ -43,6 +42,37 @@ var roleHarvester = {
                     creep.moveTo(targets[0]);
                 }
                 
+            }
+            else //if all extensions are filled, place in containers :)
+            {
+            
+                var targets = creep.room.find(FIND_STRUCTURES, 
+                { filter: 
+                        (structure) => { return (structure.structureType == STRUCTURE_CONTAINER) 
+                                && (structure.store[RESOURCE_ENERGY] < structure.storeCapacity); } 
+                });
+            
+                if(targets.length > 0) 
+                { 
+            
+                    if(creep.pos.getRangeTo(targets[0]) == 0) 
+                    { 
+                        var source = creep.pos.findClosestByPath(FIND_SOURCES); 
+                        creep.harvest(source); 
+                    }   
+                    else 
+                    { 
+                        creep.moveTo(targets[0]); 
+                    }
+                }
+            /*var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
+        
+			if(targets.length) 
+			{
+				if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
+					creep.moveTo(targets[0]);
+				}
+			}*/
             }
             
             

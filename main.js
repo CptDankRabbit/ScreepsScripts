@@ -11,7 +11,7 @@ var Type =
 	{
 		name: "Worker",
 		role: "harvester",
-		modules: [WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE]
+		modules: [WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE]
 	},
 	BUILDER:
 	{
@@ -23,7 +23,7 @@ var Type =
 	{
 		name: "Upgrader",
 		role: "upgrader",
-		modules: [WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE]
+		modules: [WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE]
 	},
 	REPAIRER:
 	{
@@ -35,7 +35,7 @@ var Type =
 	{
 	    name: "Miner",
 	    role: "miner",
-	    modules: [WORK,WORK,WORK,WORK,WORK,MOVE]
+	    modules: [WORK,WORK,WORK,WORK,WORK,MOVE,MOVE,MOVE,MOVE]
 	}
 }
 
@@ -89,18 +89,19 @@ module.exports.loop = function ()
 	var tower = Game.getObjectById('TOWER_ID');
 	if(tower) 
 	{
+	    var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+		if(closestHostile) 
+		{
+			tower.attack(closestHostile);
+		}
+		
+		
 		var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
 			filter: (structure) => structure.hits < structure.hitsMax});
 			
 		if(closestDamagedStructure) 
 		{
 			tower.repair(closestDamagedStructure);
-		}
-
-		var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-		if(closestHostile) 
-		{
-			tower.attack(closestHostile);
 		}
 	}
 	
@@ -115,25 +116,26 @@ module.exports.loop = function ()
 	    Create (Type.MINER);
 	}
 	else
-	if(harvesters.length < 4)
+	if(harvesters.length < 3)
 	{
 		Create (Type.WORKER);
 	}
 	else
-	if(upgraders.length < 4)
+	if(upgraders.length < 8) //8
 	{
 		Create (Type.UPGRADER);
 	}
 	else
-	if(builders.length < 4)
-	{
-		Create (Type.BUILDER);
-	}
-	else
-	if(repairers.length < 1)
+	if(repairers.length < 2)
 	{
 		Create (Type.REPAIRER);
 	}
+	else
+	if(builders.length < 2)
+	{
+		Create (Type.BUILDER);
+	}
+	
 	
 	for(var name in Game.creeps) 
 	{

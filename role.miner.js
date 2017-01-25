@@ -6,7 +6,7 @@
                                 && (structure.store[RESOURCE_ENERGY] > 0); }
     });
     
-var source = creep.pos.findClosestByPath(containers);
+    var source = creep.pos.findClosestByPath(containers);
     if(creep.withdraw(source, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) 
     { 
         creep.moveTo(source);
@@ -24,6 +24,8 @@ var roleMiner = {
             
         if(targets.length > 0) 
         { 
+            //var NodeNumber = _.filter(Game.creeps, (creep) => creep.memory.role == "NodeNumber");
+            
             if(creep.pos.getRangeTo(targets[0]) == 0) 
             { 
                 var source = creep.pos.findClosestByPath(FIND_SOURCES); 
