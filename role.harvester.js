@@ -43,10 +43,10 @@ var roleHarvester = {
                 }
                 
             }
-            else //if all extensions are filled, place in containers :)
+            else //if all extensions are filled, place in container or Repair :D
             {
             
-                var targets = creep.room.find(FIND_STRUCTURES, 
+                /*var targets = creep.room.find(FIND_STRUCTURES, 
                 { filter: 
                         (structure) => { return (structure.structureType == STRUCTURE_CONTAINER) 
                                 && (structure.store[RESOURCE_ENERGY] < structure.storeCapacity); } 
@@ -64,15 +64,24 @@ var roleHarvester = {
                     { 
                         creep.moveTo(targets[0]); 
                     }
+                }*/
+            var targets = creep.room.find(FIND_STRUCTURES,{
+             filter: object => object.hits < (object.hitsMax/2)
+            });
+
+            targets.sort((a,b) => a.hits - b.hits);
+            
+            console.log(targets[0]);
+
+            if(targets.length != 0) 
+            {
+                if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) 
+                {
+                    creep.moveTo(targets[0]);
                 }
-            /*var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
-        
-			if(targets.length) 
-			{
-				if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
-					creep.moveTo(targets[0]);
-				}
-			}*/
+            }
+            
+            
             }
             
             

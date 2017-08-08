@@ -3,6 +3,7 @@ var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer');
 var roleMiner = require('role.miner');
+var roleMiner2 = require('role.miner2');
 var misc = require('misc');
 
 var Type =
@@ -11,31 +12,31 @@ var Type =
 	{
 		name: "Worker",
 		role: "harvester",
-		modules: [WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE]
+		modules: [WORK,CARRY,CARRY,MOVE,MOVE]//[WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE]
 	},
 	BUILDER:
 	{
 		name: "Builder",
 		role: "builder",
-		modules: [WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE]
+		modules: [WORK,CARRY,CARRY,CARRY,MOVE]
 	},
 	UPGRADER:
 	{
 		name: "Upgrader",
 		role: "upgrader",
-		modules: [WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE]
+		modules: [WORK,CARRY,CARRY,MOVE,MOVE]
 	},
 	REPAIRER:
 	{
 		name: "Repairer",
 		role: "repairer",
-		modules: [WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE]
+		modules: [WORK,CARRY,CARRY,CARRY,MOVE]
 	},
 	MINER:
 	{
 	    name: "Miner",
 	    role: "miner",
-	    modules: [WORK,WORK,WORK,WORK,WORK,MOVE,MOVE,MOVE,MOVE]
+	    modules: [WORK,WORK,MOVE,MOVE]
 	}
 }
 
@@ -110,23 +111,29 @@ module.exports.loop = function ()
 	var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
 	var repairers  = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
 	var miner = _.filter(Game.creeps, (creep) => creep.memory.role == "miner");
+	var miner2 = _.filter(Game.creeps, (creep) => creep.memory.role == "miner2");
 	
-	if(miner.length < 1)
-	{
-	    Create (Type.MINER);
-	}
-	else
 	if(harvesters.length < 3)
 	{
 		Create (Type.WORKER);
 	}
 	else
-	if(upgraders.length < 8) //8
+	if(miner.length < 1)
+	{
+	    Create (Type.MINER);
+	}
+	else
+	if(miner2.length < 1)
+	{
+	    Create (Type.MINER2);
+	}
+	else
+	if(upgraders.length < 4) //8
 	{
 		Create (Type.UPGRADER);
 	}
 	else
-	if(repairers.length < 2)
+	if(repairers.length < 3)
 	{
 		Create (Type.REPAIRER);
 	}
@@ -154,6 +161,9 @@ module.exports.loop = function ()
         }
         if(creep.memory.role == 'miner') {
             roleMiner.run(creep);
+        }
+        if(creep.memory.role == 'miner2') {
+            roleMiner2.run(creep);
         }
 	}
 	
