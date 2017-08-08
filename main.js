@@ -37,6 +37,12 @@ var Type =
 	    name: "Miner",
 	    role: "miner",
 	    modules: [WORK,WORK,MOVE,MOVE]
+	},
+	MINER2:
+	{
+	    name: "Miner2",
+	    role: "miner2",
+	    modules: [WORK,WORK,MOVE,MOVE]
 	}
 }
 
