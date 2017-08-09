@@ -134,7 +134,7 @@ module.exports.loop = function ()
 	    Create (Type.MINER2);
 	}
 	else
-	if(builders.length < 2)
+	if(builders.length < 4)
 	{
 		Create (Type.BUILDER);
 	}
