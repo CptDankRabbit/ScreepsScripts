@@ -33,7 +33,9 @@ var roleRepairer = {
             }
             else
             {
-                creep.moveTo(Game.flags.Idle);
+                if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(creep.room.controller);
+                }
             }
            /*var targets = creep.room.find(FIND_STRUCTURES,{
              filter: object => object.hits < (object.hitsMax/2)
