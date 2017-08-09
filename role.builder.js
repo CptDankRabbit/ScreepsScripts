@@ -54,6 +54,10 @@ var roleBuilder = {
 			{
 				creep.moveTo(sources[0]);
 			}
+			else
+            {
+                creep.moveTo(Game.flags.Idle);
+            }
 		}
 	}
 };
