@@ -134,19 +134,19 @@ module.exports.loop = function ()
 	    Create (Type.MINER2);
 	}
 	else
-	if(upgraders.length < 4) //8
+	if(builders.length < 2)
+	{
+		Create (Type.BUILDER);
+	}
+	else
+	if(upgraders.length < 2) //8
 	{
 		Create (Type.UPGRADER);
 	}
 	else
-	if(repairers.length < 3)
+	if(repairers.length < 2)
 	{
 		Create (Type.REPAIRER);
-	}
-	else
-	if(builders.length < 2)
-	{
-		Create (Type.BUILDER);
 	}
 	
 	
