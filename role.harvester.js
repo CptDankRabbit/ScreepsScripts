@@ -70,23 +70,25 @@ var roleHarvester = {
                         creep.moveTo(targets[0]); 
                     }
                 }*/
-            var targets = creep.room.find(FIND_STRUCTURES,{
-             filter: object => object.hits < (object.hitsMax/2)
-            });
+                var targets = creep.room.find(FIND_STRUCTURES,{
+                 filter: object => object.hits < (object.hitsMax/2)
+                });
 
-            targets.sort((a,b) => a.hits - b.hits);
+                targets.sort((a,b) => a.hits - b.hits);
             
-            console.log(targets[0]);
+                console.log(targets[0]);
 
-            if(targets.length != 0) 
-            {
-                if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) 
+                if(targets.length != 0) 
                 {
-                    creep.moveTo(targets[0]);
+                    if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) 
+                    {
+                        creep.moveTo(targets[0]);
+                    }
                 }
-            }
-            
-            
+                else
+                {
+                    creep.moveTo(Game.flags.Idle);
+                }
             }
             
             

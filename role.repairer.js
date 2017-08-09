@@ -31,6 +31,10 @@ var roleRepairer = {
                     creep.moveTo(structure);
                 }
             }
+            else
+            {
+                creep.moveTo(Game.flags.Idle);
+            }
            /*var targets = creep.room.find(FIND_STRUCTURES,{
              filter: object => object.hits < (object.hitsMax/2)
             });

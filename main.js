@@ -119,12 +119,12 @@ module.exports.loop = function ()
 	var miner = _.filter(Game.creeps, (creep) => creep.memory.role == "miner");
 	var miner2 = _.filter(Game.creeps, (creep) => creep.memory.role == "miner2");
 	
-	if(harvesters.length < 3)
+	if(harvesters.length < 2)
 	{
 		Create (Type.WORKER);
 	}
 	else
-	if(miner.length < 1)
+	/*if(miner.length < 1)
 	{
 	    Create (Type.MINER);
 	}
@@ -133,7 +133,7 @@ module.exports.loop = function ()
 	{
 	    Create (Type.MINER2);
 	}
-	else
+	else*/
 	if(builders.length < 4)
 	{
 		Create (Type.BUILDER);
