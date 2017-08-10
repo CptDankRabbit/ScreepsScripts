@@ -92,7 +92,11 @@ function Create (type)
 
 module.exports.loop = function () 
 {
-
+    var ExtNum = Game.spawns.Spawn1.room.find(FIND_MY_STRUCTURES, {
+        filter: { structureType: STRUCTURE_EXTENSION }
+        });
+    console.log("Number of Extensions: " + ExtNum.length);
+    
 	var tower = Game.getObjectById('TOWER_ID');
 	if(tower) 
 	{

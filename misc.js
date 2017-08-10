@@ -16,8 +16,11 @@ function GetCost (parts)
  
 function ExtensionNumber()
 {
-    var ExtNumb = _.filter(Game.structures.STRUCTURE_EXTENSION);
-    console.log("Number of Extensions = " + ExtNumb)
+    var ExtNum = Game.spawns.Spawn1.room.find(FIND_MY_STRUCTURES, {
+        filter: { structureType: STRUCTURE_EXTENSION }
+        });
+    console.log("Number of Extensions: " + ExtNum.length);
+    
 }
  module.exports.ExtensionNumber = ExtensionNumber;
  
