@@ -103,7 +103,7 @@ var roleHarvester = {
                 }
                 else
                 {
-                    //do construstions if nothing to repair
+                    //do constructions if nothing to repair
                    var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
         
 			        if(targets.length) 
@@ -114,7 +114,7 @@ var roleHarvester = {
 			        }
 			        else
 			        {
-			            //Nothing to repair, than upgrade
+			            //Nothing to build, than upgrade
 			            if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) 
 			            {
                             creep.moveTo(creep.room.controller);

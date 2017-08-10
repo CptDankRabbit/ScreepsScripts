@@ -43,6 +43,14 @@ var roleBuilder = {
                         creep.moveTo(targets[0]);
                     }
                 }
+                else
+                {
+                    //Nothing to repair, than upgrade
+			        if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) 
+			        {
+                        creep.moveTo(creep.room.controller);
+                    }
+                }
             }
 		}
 		else 

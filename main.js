@@ -12,37 +12,37 @@ var Type =
 	{
 		name: "Worker",
 		role: "harvester",
-		modules: [WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE]//[WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE]
+		modules: [WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE]//[WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE]
 	},
 	BUILDER:
 	{
 		name: "Builder",
 		role: "builder",
-		modules: [WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE]
+		modules: [WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE]
 	},
 	UPGRADER:
 	{
 		name: "Upgrader",
 		role: "upgrader",
-		modules: [WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE]
+		modules: [WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE]
 	},
 	REPAIRER:
 	{
 		name: "Repairer",
 		role: "repairer",
-		modules: [WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE]
+		modules: [WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE]
 	},
 	MINER:
 	{
 	    name: "Miner",
 	    role: "miner",
-	    modules: [WORK,WORK,WORK,WORK,WORK,MOVE,MOVE]
+	    modules: [WORK,WORK,WORK,WORK,WORK,WORK,WORK,MOVE,MOVE]
 	},
 	MINER2:
 	{
 	    name: "Miner2",
 	    role: "miner2",
-	    modules: [WORK,WORK,WORK,WORK,WORK,MOVE,MOVE]
+	    modules: [WORK,WORK,WORK,WORK,WORK,WORK,WORK,MOVE,MOVE]
 	}
 }
 
@@ -92,10 +92,51 @@ function Create (type)
 
 module.exports.loop = function () 
 {
-    var ExtNum = Game.spawns.Spawn1.room.find(FIND_MY_STRUCTURES, {
+    /*var ExtNum = Game.spawns.Spawn1.room.find(FIND_MY_STRUCTURES, {
         filter: { structureType: STRUCTURE_EXTENSION }
         });
-    console.log("Number of Extensions: " + ExtNum.length);
+    console.log("Number of Extensions: " + ExtNum.length); */ //Just using up cpu currently.
+    
+    /*var level; //Level By Extension Numbers
+    
+    if (ExtNum.length >= 0 && ExtNum.length <= 4)
+    {
+        level = 1;
+    }
+    else if (ExtNum.length >= 5 && ExtNum.length <= 9)
+    {
+        level = 2;
+    }
+    else if (ExtNum.length >= 10 && ExtNum.length <= 14)
+    {
+        level = 3;
+    }
+    else if (ExtNum.length >= 15 && ExtNum.length <= 19)
+    {
+        level = 4;
+    }
+    else if (ExtNum.length >= 20 && ExtNum.length <= 29)
+    {
+        level = 5;
+    }
+    else if (ExtNum.length >= 30 && ExtNum.length <= 39)
+    {
+        level = 6;
+    }
+    else if (ExtNum.length >= 40 && ExtNum.length <= 49)
+    {
+        level = 7;
+    }
+    else if (ExtNum.length >= 50 && ExtNum.length <= 59)
+    {
+        level = 8;
+    }
+    else if (ExtNum.length >= 60 && ExtNum.length <= 69) //69 For Memes
+    {
+        level = 9;
+    }
+    
+     console.log("Current Level: " + level);*/
     
 	var tower = Game.getObjectById('TOWER_ID');
 	if(tower) 
@@ -128,12 +169,12 @@ module.exports.loop = function ()
 		Create (Type.WORKER);
 	}
 	else
-	if(miner.length < 2)
+	if(miner.length < 1)
 	{
 	    Create (Type.MINER);
 	}
 	else
-	if(miner2.length < 2)
+	if(miner2.length < 1)
 	{
 	    Create (Type.MINER2);
 	}
