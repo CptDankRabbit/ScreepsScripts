@@ -70,6 +70,7 @@ var roleHarvester = {
                         creep.moveTo(targets[0]); 
                     }
                 }*/
+                //Repair if nothing to do
                 var targets = creep.room.find(FIND_STRUCTURES,{
                  filter: object => object.hits < (object.hitsMax/2)
                 });
@@ -87,6 +88,7 @@ var roleHarvester = {
                 }
                 else
                 {
+                    //do construstions if nothing to repair
                    var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
         
 			        if(targets.length) 

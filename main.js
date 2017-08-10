@@ -12,37 +12,37 @@ var Type =
 	{
 		name: "Worker",
 		role: "harvester",
-		modules: [WORK,CARRY,CARRY,MOVE,MOVE]//[WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE]
+		modules: [WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE]//[WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE]
 	},
 	BUILDER:
 	{
 		name: "Builder",
 		role: "builder",
-		modules: [WORK,CARRY,CARRY,CARRY,MOVE]
+		modules: [WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE]
 	},
 	UPGRADER:
 	{
 		name: "Upgrader",
 		role: "upgrader",
-		modules: [WORK,CARRY,CARRY,MOVE,MOVE]
+		modules: [WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE]
 	},
 	REPAIRER:
 	{
 		name: "Repairer",
 		role: "repairer",
-		modules: [WORK,CARRY,CARRY,CARRY,MOVE]
+		modules: [WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE]
 	},
 	MINER:
 	{
 	    name: "Miner",
 	    role: "miner",
-	    modules: [WORK,WORK,MOVE,MOVE]
+	    modules: [WORK,WORK,WORK,WORK,MOVE,MOVE]
 	},
 	MINER2:
 	{
 	    name: "Miner2",
 	    role: "miner2",
-	    modules: [WORK,WORK,MOVE,MOVE]
+	    modules: [WORK,WORK,WORK,WORK,MOVE,MOVE]
 	}
 }
 
@@ -119,12 +119,12 @@ module.exports.loop = function ()
 	var miner = _.filter(Game.creeps, (creep) => creep.memory.role == "miner");
 	var miner2 = _.filter(Game.creeps, (creep) => creep.memory.role == "miner2");
 	
-	if(harvesters.length < 2)
+	if(harvesters.length < 3)
 	{
 		Create (Type.WORKER);
 	}
 	else
-	/*if(miner.length < 1)
+	if(miner.length < 1)
 	{
 	    Create (Type.MINER);
 	}
@@ -133,7 +133,7 @@ module.exports.loop = function ()
 	{
 	    Create (Type.MINER2);
 	}
-	else*/
+	else
 	if(builders.length < 4)
 	{
 		Create (Type.BUILDER);

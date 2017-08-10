@@ -14,6 +14,13 @@ function GetCost (parts)
 
  module.exports.GetCost = GetCost;
  
+function ExtensionNumber()
+{
+    var ExtNumb = _.filter(Game.structures.STRUCTURE_EXTENSION);
+    console.log("Number of Extensions = " + ExtNumb)
+}
+ module.exports.ExtensionNumber = ExtensionNumber;
+ 
  function RoleCall()
  {
     var NameAllHarvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
@@ -29,7 +36,8 @@ function GetCost (parts)
    	console.log("Name of all Upgraders = " + NameAllUpgraders)
 	console.log("Name of all Builders = " + NameAllBuilders)
 	console.log("Name of all Repairers = " + NameAllRepairers)
-	console.log("Name of all Miners = " + (NameAllMiners + NameAllMiners2))
+	console.log("Name of all Miners = " + NameAllMiners)
+	console.log("Name of all Miner2s = " + NameAllMiners2)
 	console.log("Total Creeps = " + TotalCreeps)
 }
 
