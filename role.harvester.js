@@ -21,11 +21,26 @@ var roleHarvester = {
 		
         if(creep.memory.harvesting) 
         {   
-            var sources = creep.room.find(FIND_SOURCES);
-			var closest = creep.pos.findClosestByRange(sources);
-			creep.pos
-            if(creep.harvest(sources[creep.memory.resource]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[creep.memory.resource]);
+            var containers = creep.room.find(FIND_STRUCTURES, //Finds Containers with Energy
+            { 
+                filter: 
+                    (structure) => { return (structure.structureType == STRUCTURE_CONTAINER) 
+                                    && (structure.store[RESOURCE_ENERGY] > 0); }
+            });
+            
+	        var source = creep.pos.findClosestByPath(containers); //Finds Closest Containers
+            if(creep.withdraw(source, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) 
+            { 
+                creep.moveTo(source);
+            }
+            else
+            {
+                var sources = creep.room.find(FIND_SOURCES);
+			    var closest = creep.pos.findClosestByRange(sources);
+			    creep.pos
+                if(creep.harvest(sources[creep.memory.resource]) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(sources[creep.memory.resource]);
+                }
             }
         }
         else 
@@ -96,6 +111,14 @@ var roleHarvester = {
 				        if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
 					    creep.moveTo(targets[0]);
 				        }
+			        }
+			        else
+			        {
+			            //Nothing to repair, than upgrade
+			            if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) 
+			            {
+                            creep.moveTo(creep.room.controller);
+                        }
 			        }
                 }
             }

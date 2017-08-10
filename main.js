@@ -128,12 +128,12 @@ module.exports.loop = function ()
 		Create (Type.WORKER);
 	}
 	else
-	if(miner.length < 1)
+	if(miner.length < 2)
 	{
 	    Create (Type.MINER);
 	}
 	else
-	if(miner2.length < 1)
+	if(miner2.length < 2)
 	{
 	    Create (Type.MINER2);
 	}
